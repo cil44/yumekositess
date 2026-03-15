@@ -1,0 +1,24 @@
+{
+  "entities": {
+    "Review": {
+      "title": "Review",
+      "description": "A user review for the bot",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The Discord UID of the user" },
+        "userName": { "type": "string", "description": "The Discord display name" },
+        "userAvatar": { "type": "string", "description": "The Discord avatar URL" },
+        "rating": { "type": "number", "description": "Rating from 1 to 5" },
+        "comment": { "type": "string", "description": "The review text" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the review was created" }
+      },
+      "required": ["userId", "userName", "rating", "comment", "createdAt"]
+    }
+  },
+  "firestore": {
+    "reviews": {
+      "schema": "Review",
+      "description": "Collection of bot reviews"
+    }
+  }
+}

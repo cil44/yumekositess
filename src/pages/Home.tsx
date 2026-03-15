@@ -3,6 +3,7 @@ import { ChevronDown, Sparkles, Zap, Globe, Gift, Terminal } from "lucide-react"
 import { config } from "@/src/config";
 import { Button } from "@/src/components/ui/Button";
 import { CommandShowcase } from "@/src/components/CommandShowcase";
+import { ReviewSection } from "@/src/components/ReviewSection";
 
 const features = [
   {
@@ -145,6 +146,9 @@ export function Home() {
           ))}
         </div>
       </section>
+
+      {/* Review Section */}
+      <ReviewSection />
 
       {/* Commands Section */}
       <section className="w-full px-6 py-32 relative z-10 bg-surface/10 border-t border-white/5">
