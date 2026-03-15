@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Star, MessageSquare, LogIn, Send, User, Trash2 } from "lucide-react";
-import { auth, db, discordProvider } from "@/src/lib/firebase";
+import { auth, db, googleProvider } from "@/src/lib/firebase";
 import { 
   signInWithPopup, 
   onAuthStateChanged, 
@@ -98,13 +98,13 @@ export function ReviewSection() {
 
   const handleLogin = async () => {
     try {
-      await signInWithPopup(auth, discordProvider);
+      await signInWithPopup(auth, googleProvider);
     } catch (err: any) {
       console.error("Login error:", err);
       if (err.code === "auth/operation-not-allowed") {
-        setError("Discord login belum diaktifkan di Firebase Console. Silakan aktifkan di tab Authentication -> Sign-in method.");
+        setError("Google login belum diaktifkan di Firebase Console. Silakan aktifkan di tab Authentication -> Sign-in method.");
       } else {
-        setError("Gagal login dengan Discord.");
+        setError("Gagal login dengan Google.");
       }
     }
   };
@@ -176,10 +176,10 @@ export function ReviewSection() {
 
             {!user ? (
               <div className="text-center py-8">
-                <p className="text-gray-400 mb-6">Kamu harus login dengan Discord untuk memberikan rating.</p>
-                <Button onClick={handleLogin} className="w-full bg-[#5865F2] hover:bg-[#4752C4] border-none">
+                <p className="text-gray-400 mb-6">Kamu harus login dengan Google untuk memberikan rating.</p>
+                <Button onClick={handleLogin} className="w-full bg-white text-black hover:bg-gray-200 border-none">
                   <LogIn className="w-5 h-5" />
-                  Login with Discord
+                  Login with Google
                 </Button>
               </div>
             ) : (
