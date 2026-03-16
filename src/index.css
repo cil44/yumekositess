@@ -45,3 +45,26 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-secondary);
 }
+
+@keyframes slideIn {
+  0% { opacity: 0; transform: translateX(-20px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.animate-slide-in {
+  animation: slideIn 1.5s ease-out forwards;
+}
+
+@keyframes glitter {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-glitter {
+  background-image: linear-gradient(90deg, white 20%, rgba(255, 215, 0, 0.8) 50%, white 80%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: glitter 4s linear infinite;
+}

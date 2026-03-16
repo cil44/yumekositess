@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { ChevronDown, Sparkles, Zap, Globe, Gift, Terminal } from "lucide-react";
+import { ChevronDown, Sparkles, Zap, Globe, Gift, Terminal, CheckCircle2, Check } from "lucide-react";
 import { config } from "@/src/config";
 import { Button } from "@/src/components/ui/Button";
 import { CommandShowcase } from "@/src/components/CommandShowcase";
@@ -74,8 +74,17 @@ export function Home() {
               <div className="absolute bottom-2 right-2 md:bottom-4 md:right-4 w-6 h-6 md:w-8 md:h-8 bg-[#23a559] border-4 border-surface rounded-full shadow-[0_0_15px_rgba(35,165,89,0.8)]" />
             </div>
 
+            {/* Live Status */}
+            <div className="mb-8 flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-gray-400">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+              </span>
+              Bot Status: Online | Latency: 24ms
+            </div>
+
             {/* Title & Tagline */}
-            <h1 className="font-serif text-4xl md:text-6xl font-bold mb-4 text-white drop-shadow-lg">
+            <h1 className="font-serif text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg flex items-center justify-center gap-3 tracking-tight animate-slide-in animate-glitter">
               {config.botName}
             </h1>
 
@@ -131,8 +140,8 @@ export function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="bg-surface/50 backdrop-blur-sm border border-white/5 hover:border-primary/50 rounded-2xl p-8 transition-all duration-300 group relative overflow-hidden"
+              whileHover={{ y: -10, borderColor: "rgba(255,215,0,0.3)" }}
+              className="bg-surface/50 backdrop-blur-sm border border-white/5 rounded-2xl p-8 transition-all duration-300 group relative overflow-hidden hover:shadow-[0_0_30px_rgba(255,215,0,0.1)]"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="relative z-10">
