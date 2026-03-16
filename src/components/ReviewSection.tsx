@@ -57,34 +57,50 @@ function UserAvatar({ name, src }: { name: string; src?: string }) {
 }
 
 const INITIAL_REVIEWS = [
-  { id: "1", userName: "Budi Santoso", rating: 5, comment: "Anjirr gw kira bakal ribet ternyata gampang juga co", createdAt: new Date() },
-  { id: "2", userName: "Sarah", rating: 5, comment: "Aku baru coba bentar tapi lucu juga gamenya 😻", createdAt: new Date() },
-  { id: "3", userName: "Rizky", rating: 5, comment: "Sriusss ini botnya bgsss 👍", createdAt: new Date() },
-  { id: "4", userName: "Alex", rating: 5, comment: "I like bots that are simple like this", createdAt: new Date() },
-  { id: "5", userName: "Dinda", rating: 5, comment: "Aku suka sih yang command nya gk ribet gini 😍", createdAt: new Date() },
-  { id: "6", userName: "Fajar", rating: 4, comment: "Gw kira bakal pusing pakainya, ternyata gampang banget", createdAt: new Date() },
-  { id: "7", userName: "Maya", rating: 5, comment: "Aku baru coba tapi seru juga 😋", createdAt: new Date() },
-  { id: "8", userName: "John", rating: 5, comment: "Seems like a nice project, keep it up!", createdAt: new Date() },
-  { id: "9", userName: "Andi", rating: 5, comment: "Srius ini enak dipakai rame rame", createdAt: new Date() },
-  { id: "10", userName: "Putri", rating: 5, comment: "Gw suka konsep bot kayak gini, unik", createdAt: new Date() },
-  { id: "11", userName: "Kevin", rating: 5, comment: "I tried a few commands and it works well", createdAt: new Date() },
-  { id: "12", userName: "Siska", rating: 5, comment: "Ak tadi iseng coba eh ternyata oke juga", createdAt: new Date() },
-  { id: "13", userName: "Bimo", rating: 4, comment: "Anjirr lumayan juga buat hiburan server", createdAt: new Date() },
-  { id: "14", userName: "Emily", rating: 5, comment: "Could be fun with friends in a server", createdAt: new Date() },
-  { id: "15", userName: "Rian", rating: 5, comment: "Aku kira bot biasa ternyata ada game juga 😭", createdAt: new Date() },
-  { id: "16", userName: "David", rating: 5, comment: "The help menu makes it easy to learn, nice job", createdAt: new Date() },
-  { id: "17", userName: "Tika", rating: 5, comment: "Srius gw gk nyangka bakal semudah ini", createdAt: new Date() },
-  { id: "18", userName: "Chris", rating: 5, comment: "This looks promising, will definitely use it more", createdAt: new Date() },
-  { id: "19", userName: "Lina", rating: 5, comment: "Aku masih baru di discord tapi gk bingung pakainya 🥰", createdAt: new Date() },
-  { id: "20", userName: "Hadi", rating: 5, comment: "Gw bakal coba pakai di server gw nanti", createdAt: new Date() },
-  { id: "21", userName: "Sarah", rating: 5, comment: "I like the idea behind this bot", createdAt: new Date() },
-  { id: "22", userName: "Ferry", rating: 5, comment: "Anjirr ini bikin server jadi lebih hidup", createdAt: new Date() },
-  { id: "23", userName: "Dewi", rating: 5, comment: "Aku suka tampilannya juga 😍", createdAt: new Date() },
-  { id: "24", userName: "Mark", rating: 5, comment: "Definitely worth trying, recommended!", createdAt: new Date() },
-  { id: "25", userName: "Yuni", rating: 5, comment: "Srius ini patut dicoba sih", createdAt: new Date() },
-  { id: "26", userName: "Gani", rating: 5, comment: "Bgsss menurut gw 👍👍", createdAt: new Date() },
-  { id: "27", userName: "Jessica", rating: 5, comment: "This bot could become popular, good luck!", createdAt: new Date() }
+  { id: "1", userName: "Budi Santoso", rating: 5, comment: "Anjirr gw kira bakal ribet ternyata gampang juga co", createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000) },
+  { id: "2", userName: "Sarah", rating: 5, comment: "Aku baru coba bentar tapi lucu juga gamenya 😻", createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) },
+  { id: "3", userName: "Rizky", rating: 5, comment: "Sriusss ini botnya bgsss 👍", createdAt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) },
+  { id: "4", userName: "Alex", rating: 5, comment: "I like bots that are simple like this", createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000) },
+  { id: "5", userName: "Dinda", rating: 5, comment: "Aku suka sih yang command nya gk ribet gini 😍", createdAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000) },
+  { id: "6", userName: "Fajar", rating: 4, comment: "Gw kira bakal pusing pakainya, ternyata gampang banget", createdAt: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000) },
+  { id: "7", userName: "Maya", rating: 5, comment: "Aku baru coba tapi seru juga 😋", createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000) },
+  { id: "8", userName: "John", rating: 5, comment: "Seems like a nice project, keep it up!", createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000) },
+  { id: "9", userName: "Andi", rating: 5, comment: "Srius ini enak dipakai rame rame", createdAt: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000) },
+  { id: "10", userName: "Putri", rating: 5, comment: "Gw suka konsep bot kayak gini, unik", createdAt: new Date(Date.now() - 40 * 24 * 60 * 60 * 1000) },
+  { id: "11", userName: "Kevin", rating: 5, comment: "I tried a few commands and it works well", createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000) },
+  { id: "12", userName: "Siska", rating: 5, comment: "Ak tadi iseng coba eh ternyata oke juga", createdAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000) },
+  { id: "13", userName: "Bimo", rating: 4, comment: "Anjirr lumayan juga buat hiburan server", createdAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000) },
+  { id: "14", userName: "Emily", rating: 5, comment: "Could be fun with friends in a server", createdAt: new Date(Date.now() - 25 * 24 * 60 * 60 * 1000) },
+  { id: "15", userName: "Rian", rating: 5, comment: "Aku kira bot biasa ternyata ada game juga 😭", createdAt: new Date(Date.now() - 35 * 24 * 60 * 60 * 1000) },
+  { id: "16", userName: "David", rating: 5, comment: "The help menu makes it easy to learn, nice job", createdAt: new Date(Date.now() - 45 * 24 * 60 * 60 * 1000) },
+  { id: "17", userName: "Tika", rating: 5, comment: "Srius gw gk nyangka bakal semudah ini", createdAt: new Date(Date.now() - 55 * 24 * 60 * 60 * 1000) },
+  { id: "18", userName: "Chris", rating: 5, comment: "This looks promising, will definitely use it more", createdAt: new Date(Date.now() - 65 * 24 * 60 * 60 * 1000) },
+  { id: "19", userName: "Lina", rating: 5, comment: "Aku masih baru di discord tapi gk bingung pakainya 🥰", createdAt: new Date(Date.now() - 75 * 24 * 60 * 60 * 1000) },
+  { id: "20", userName: "Hadi", rating: 5, comment: "Gw bakal coba pakai di server gw nanti", createdAt: new Date(Date.now() - 85 * 24 * 60 * 60 * 1000) },
+  { id: "21", userName: "Sarah", rating: 5, comment: "I like the idea behind this bot", createdAt: new Date(Date.now() - 95 * 24 * 60 * 60 * 1000) },
+  { id: "22", userName: "Ferry", rating: 5, comment: "Anjirr ini bikin server jadi lebih hidup", createdAt: new Date(Date.now() - 105 * 24 * 60 * 60 * 1000) },
+  { id: "23", userName: "Dewi", rating: 5, comment: "Aku suka tampilannya juga 😍", createdAt: new Date(Date.now() - 115 * 24 * 60 * 60 * 1000) },
+  { id: "24", userName: "Mark", rating: 5, comment: "Definitely worth trying, recommended!", createdAt: new Date(Date.now() - 125 * 24 * 60 * 60 * 1000) },
+  { id: "25", userName: "Yuni", rating: 5, comment: "Srius ini patut dicoba sih", createdAt: new Date(Date.now() - 135 * 24 * 60 * 60 * 1000) },
+  { id: "26", userName: "Gani", rating: 5, comment: "Bgsss menurut gw 👍👍", createdAt: new Date(Date.now() - 145 * 24 * 60 * 60 * 1000) },
+  { id: "27", userName: "Jessica", rating: 5, comment: "This bot could become popular, good luck!", createdAt: new Date(Date.now() - 155 * 24 * 60 * 60 * 1000) }
 ];
+
+function getRelativeTime(date: Date) {
+  const now = new Date();
+  const diffInMs = now.getTime() - date.getTime();
+  const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+  
+  if (diffInDays === 0) return "Today";
+  if (diffInDays === 1) return "Yesterday";
+  if (diffInDays < 7) return `${diffInDays} days ago`;
+  if (diffInDays < 30) {
+    const weeks = Math.floor(diffInDays / 7);
+    return weeks === 1 ? "1 week ago" : `${weeks} weeks ago`;
+  }
+  const months = Math.floor(diffInDays / 30);
+  return months === 1 ? "1 month ago" : `${months} months ago`;
+}
 
 export function ReviewSection() {
   const [user, setUser] = useState<FirebaseUser | null>(null);
@@ -279,7 +295,7 @@ export function ReviewSection() {
                     <p className="text-gray-400 leading-relaxed italic">"{review.comment}"</p>
                     <div className="mt-4 flex items-center justify-between">
                       <span className="text-xs text-gray-600">
-                        {review.createdAt?.toDate ? review.createdAt.toDate().toLocaleDateString() : new Date(review.createdAt).toLocaleDateString()}
+                        {review.createdAt?.toDate ? getRelativeTime(review.createdAt.toDate()) : getRelativeTime(new Date(review.createdAt))}
                       </span>
                       {user && user.uid === review.userId && (
                         <button 
