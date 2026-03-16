@@ -24,61 +24,66 @@ interface Review {
   id: string;
   userId: string;
   userName: string;
-  userAvatar: string;
+  userAvatar?: string;
   rating: number;
   comment: string;
   createdAt: any;
 }
 
-const INITIAL_REVIEWS = [
-  {
-    id: "1",
-    userName: "Ayumee",
-    userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ayumee",
-    rating: 5,
-    comment: "asli asik bgtt woiii",
-    createdAt: new Date()
-  },
-  {
-    id: "2",
-    userName: "Kuroo",
-    userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Kuroo",
-    rating: 5,
-    comment: "bot paling bgus si mnurutku😵command lengkap kalo bingung tnggal command .help udah ada tuh panduan nya",
-    createdAt: new Date()
-  },
-  {
-    id: "3",
-    userName: "Vee",
-    userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Vee",
-    rating: 5,
-    comment: "bisa bisa nya ni bot baru ada sekarang👊😭",
-    createdAt: new Date()
-  },
-  {
-    id: "4",
-    userName: "Zenn",
-    userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Zenn",
-    rating: 5,
-    comment: "lengkap banget udah gitu kalo klen masuk leaderboard frame nya bagus dishop juga bagus loh",
-    createdAt: new Date()
-  },
-  {
-    id: "5",
-    userName: "Choco",
-    userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Choco",
-    rating: 5,
-    comment: "Gila sih ini bot casino paling gacor, auto kaya raya di discord 💸🔥",
-    createdAt: new Date()
-  },
-  {
-    id: "6",
-    userName: "Neko",
-    userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Neko",
-    rating: 5,
-    comment: "Sering-sering event ya min, seru bgt asli mainnya bareng temen se-server",
-    createdAt: new Date()
+function UserAvatar({ name, src }: { name: string; src?: string }) {
+  const initials = name.charAt(0).toUpperCase();
+  
+  const getColor = (name: string) => {
+    let hash = 0;
+    for (let i = 0; i < name.length; i++) {
+      hash = name.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const color = `hsl(${hash % 360}, 70%, 50%)`;
+    return color;
+  };
+
+  if (src && src.startsWith('http') && !src.includes('dicebear')) {
+    return <img src={src} alt={name} className="w-12 h-12 rounded-full border border-white/10 object-cover" />;
   }
+
+  return (
+    <div 
+      className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl border border-white/10"
+      style={{ backgroundColor: getColor(name) }}
+    >
+      {initials}
+    </div>
+  );
+}
+
+const INITIAL_REVIEWS = [
+  { id: "1", userName: "Budi Santoso", rating: 5, comment: "Anjirr gw kira bakal ribet ternyata gampang juga co", createdAt: new Date() },
+  { id: "2", userName: "Sarah", rating: 5, comment: "Aku baru coba bentar tapi lucu juga gamenya 😻", createdAt: new Date() },
+  { id: "3", userName: "Rizky", rating: 5, comment: "Sriusss ini botnya bgsss 👍", createdAt: new Date() },
+  { id: "4", userName: "Alex", rating: 5, comment: "I like bots that are simple like this", createdAt: new Date() },
+  { id: "5", userName: "Dinda", rating: 5, comment: "Aku suka sih yang command nya gk ribet gini 😍", createdAt: new Date() },
+  { id: "6", userName: "Fajar", rating: 4, comment: "Gw kira bakal pusing pakainya, ternyata gampang banget", createdAt: new Date() },
+  { id: "7", userName: "Maya", rating: 5, comment: "Aku baru coba tapi seru juga 😋", createdAt: new Date() },
+  { id: "8", userName: "John", rating: 5, comment: "Seems like a nice project, keep it up!", createdAt: new Date() },
+  { id: "9", userName: "Andi", rating: 5, comment: "Srius ini enak dipakai rame rame", createdAt: new Date() },
+  { id: "10", userName: "Putri", rating: 5, comment: "Gw suka konsep bot kayak gini, unik", createdAt: new Date() },
+  { id: "11", userName: "Kevin", rating: 5, comment: "I tried a few commands and it works well", createdAt: new Date() },
+  { id: "12", userName: "Siska", rating: 5, comment: "Ak tadi iseng coba eh ternyata oke juga", createdAt: new Date() },
+  { id: "13", userName: "Bimo", rating: 4, comment: "Anjirr lumayan juga buat hiburan server", createdAt: new Date() },
+  { id: "14", userName: "Emily", rating: 5, comment: "Could be fun with friends in a server", createdAt: new Date() },
+  { id: "15", userName: "Rian", rating: 5, comment: "Aku kira bot biasa ternyata ada game juga 😭", createdAt: new Date() },
+  { id: "16", userName: "David", rating: 5, comment: "The help menu makes it easy to learn, nice job", createdAt: new Date() },
+  { id: "17", userName: "Tika", rating: 5, comment: "Srius gw gk nyangka bakal semudah ini", createdAt: new Date() },
+  { id: "18", userName: "Chris", rating: 5, comment: "This looks promising, will definitely use it more", createdAt: new Date() },
+  { id: "19", userName: "Lina", rating: 5, comment: "Aku masih baru di discord tapi gk bingung pakainya 🥰", createdAt: new Date() },
+  { id: "20", userName: "Hadi", rating: 5, comment: "Gw bakal coba pakai di server gw nanti", createdAt: new Date() },
+  { id: "21", userName: "Sarah", rating: 5, comment: "I like the idea behind this bot", createdAt: new Date() },
+  { id: "22", userName: "Ferry", rating: 5, comment: "Anjirr ini bikin server jadi lebih hidup", createdAt: new Date() },
+  { id: "23", userName: "Dewi", rating: 5, comment: "Aku suka tampilannya juga 😍", createdAt: new Date() },
+  { id: "24", userName: "Mark", rating: 5, comment: "Definitely worth trying, recommended!", createdAt: new Date() },
+  { id: "25", userName: "Yuni", rating: 5, comment: "Srius ini patut dicoba sih", createdAt: new Date() },
+  { id: "26", userName: "Gani", rating: 5, comment: "Bgsss menurut gw 👍👍", createdAt: new Date() },
+  { id: "27", userName: "Jessica", rating: 5, comment: "This bot could become popular, good luck!", createdAt: new Date() }
 ];
 
 export function ReviewSection() {
@@ -138,7 +143,7 @@ export function ReviewSection() {
       await addDoc(collection(db, "reviews"), {
         userId: user.uid,
         userName: user.displayName || "Anonymous",
-        userAvatar: user.photoURL || `https://api.dicebear.com/7.x/avataaars/svg?seed=${user.uid}`,
+        userAvatar: user.photoURL || undefined,
         rating: newRating,
         comment: newComment,
         createdAt: serverTimestamp()
@@ -161,7 +166,7 @@ export function ReviewSection() {
     }
   };
 
-  const displayReviews = reviews.length > 0 ? reviews : INITIAL_REVIEWS as Review[];
+  const displayReviews = [...INITIAL_REVIEWS as Review[], ...reviews];
 
   return (
     <section className="w-full max-w-7xl mx-auto px-6 py-32 relative z-10">
@@ -201,7 +206,7 @@ export function ReviewSection() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="flex items-center gap-4 mb-6 p-3 bg-white/5 rounded-2xl">
-                  <img src={user.photoURL || ""} alt="Avatar" className="w-12 h-12 rounded-full border-2 border-primary" />
+                  <UserAvatar name={user.displayName || "Anonymous"} src={user.photoURL || undefined} />
                   <div className="flex-1 min-w-0">
                     <p className="text-white font-bold truncate">{user.displayName}</p>
                     <button type="button" onClick={handleLogout} className="text-xs text-gray-500 hover:text-primary transition-colors">Logout</button>
@@ -261,7 +266,7 @@ export function ReviewSection() {
                 className="bg-surface/30 backdrop-blur-sm border border-white/5 rounded-2xl p-6 relative group"
               >
                 <div className="flex items-start gap-4">
-                  <img src={review.userAvatar} alt={review.userName} className="w-12 h-12 rounded-full border border-white/10" />
+                  <UserAvatar name={review.userName} src={review.userAvatar} />
                   <div className="flex-1">
                     <div className="flex items-center justify-between mb-2">
                       <h4 className="text-white font-bold">{review.userName}</h4>

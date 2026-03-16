@@ -4,6 +4,7 @@ import { config } from "@/src/config";
 import { Button } from "@/src/components/ui/Button";
 import { CommandShowcase } from "@/src/components/CommandShowcase";
 import { ReviewSection } from "@/src/components/ReviewSection";
+import { BuyCoinSection } from "@/src/components/BuyCoinSection";
 
 const features = [
   {
@@ -95,6 +96,9 @@ export function Home() {
                   Support Server
                 </Button>
               </a>
+              <div className="w-full sm:w-auto">
+                <BuyCoinSection />
+              </div>
             </div>
           </div>
         </motion.div>
