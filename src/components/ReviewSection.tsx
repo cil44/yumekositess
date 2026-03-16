@@ -33,34 +33,50 @@ interface Review {
 const INITIAL_REVIEWS = [
   {
     id: "1",
-    userName: "Rizky Gaming",
-    userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Rizky",
+    userName: "Ayumee",
+    userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ayumee",
     rating: 5,
-    comment: "Bot casino terbaik yang pernah saya coba! Fiturnya lengkap banget.",
+    comment: "asli asik bgtt woiii",
     createdAt: new Date()
   },
   {
     id: "2",
-    userName: "Alex_Dev",
-    userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex",
-    rating: 4,
-    comment: "Very smooth experience, the global economy is actually balanced. Nice job!",
+    userName: "Kuroo",
+    userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Kuroo",
+    rating: 5,
+    comment: "bot paling bgus si mnurutku😵command lengkap kalo bingung tnggal command .help udah ada tuh panduan nya",
     createdAt: new Date()
   },
   {
     id: "3",
-    userName: "Siti Rahma",
-    userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Siti",
+    userName: "Vee",
+    userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Vee",
     rating: 5,
-    comment: "Suka banget sama card games-nya. Gak ngebosenin main bareng temen-temen.",
+    comment: "bisa bisa nya ni bot baru ada sekarang👊😭",
     createdAt: new Date()
   },
   {
     id: "4",
-    userName: "Shadow_Hunter",
-    userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Shadow",
+    userName: "Zenn",
+    userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Zenn",
     rating: 5,
-    comment: "The best gambling bot out there. Highly recommended for any server!",
+    comment: "lengkap banget udah gitu kalo klen masuk leaderboard frame nya bagus dishop juga bagus loh",
+    createdAt: new Date()
+  },
+  {
+    id: "5",
+    userName: "Choco",
+    userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Choco",
+    rating: 5,
+    comment: "Gila sih ini bot casino paling gacor, auto kaya raya di discord 💸🔥",
+    createdAt: new Date()
+  },
+  {
+    id: "6",
+    userName: "Neko",
+    userAvatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Neko",
+    rating: 5,
+    comment: "Sering-sering event ya min, seru bgt asli mainnya bareng temen se-server",
     createdAt: new Date()
   }
 ];
