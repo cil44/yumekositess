@@ -68,3 +68,12 @@ h1, h2, h3, h4, h5, h6 {
   color: transparent;
   animation: glitter 4s linear infinite;
 }
+
+@keyframes shine {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+.animate-shine {
+  animation: shine 1.5s infinite;
+}
