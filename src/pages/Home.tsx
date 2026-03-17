@@ -5,6 +5,7 @@ import { Button } from "@/src/components/ui/Button";
 import { CommandShowcase } from "@/src/components/CommandShowcase";
 import { ReviewSection } from "@/src/components/ReviewSection";
 import { BuyCoinSection } from "@/src/components/BuyCoinSection";
+import { VisitorCounter } from "@/src/components/VisitorCounter";
 
 const features = [
   {
@@ -75,12 +76,15 @@ export function Home() {
             </div>
 
             {/* Live Status */}
-            <div className="mb-8 flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-gray-400">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-              </span>
-              Bot Status: Online | Latency: 24ms
+            <div className="mb-8 flex flex-col items-center gap-4">
+              <div className="flex items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-gray-400">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                Bot Status: Online | Latency: 24ms
+              </div>
+              <VisitorCounter />
             </div>
 
             {/* Title & Tagline */}

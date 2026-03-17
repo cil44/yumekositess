@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { config } from "@/src/config";
 import { Mail, MessageCircle, Send } from "lucide-react";
+import { VisitorCounter } from "./VisitorCounter";
 
 export function Footer() {
   return (
@@ -86,7 +87,8 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 pt-8 border-t border-white/5 text-center relative z-10">
+      <div className="max-w-7xl mx-auto px-6 pt-8 border-t border-white/5 flex flex-col items-center gap-6 relative z-10">
+        <VisitorCounter />
         <p className="text-gray-500 text-sm whitespace-pre-line leading-relaxed">
           {config.footerText}
         </p>
