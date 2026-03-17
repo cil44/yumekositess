@@ -116,6 +116,9 @@ export function DiscordWidget() {
             {/* Button Shine Effect */}
             <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:animate-shine" />
           </a>
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] mt-3 text-center animate-glitter">
+            Join Free 15.000 coin
+          </p>
         </div>
       </div>
     </div>

@@ -4,11 +4,11 @@ import { ShoppingCart, X, MessageCircle, Send } from "lucide-react";
 import { Button } from "./ui/Button";
 
 const PRICE_LIST = [
-  { coins: "5.000.000", price: "Rp. 10.000" },
-  { coins: "10.000.000", price: "Rp. 15.000" },
-  { coins: "25.000.000", price: "Rp. 20.000" },
-  { coins: "50.000.000", price: "Rp. 25.000" },
-  { coins: "150.000.000", price: "Rp. 55.000" },
+  { coins: "5.000.000", price: "Rp. 7.000" },
+  { coins: "10.000.000", price: "Rp. 10.000" },
+  { coins: "25.000.000", price: "Rp. 15.000" },
+  { coins: "50.000.000", price: "Rp. 20.000" },
+  { coins: "150.000.000", price: "Rp. 45.000" },
 ];
 
 export function BuyCoinSection() {
