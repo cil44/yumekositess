@@ -34,7 +34,7 @@ export function Home() {
   return (
     <div className="flex flex-col items-center w-full">
       {/* Hero Section */}
-      <section className="relative w-full min-h-[90vh] flex flex-col items-center justify-center overflow-hidden pt-20 pb-10">
+      <section className="relative w-full min-h-[80vh] md:min-h-[90vh] flex flex-col items-center justify-center overflow-hidden pt-16 pb-8 md:pt-20 md:pb-10">
         {/* Background Ambient Glow */}
         <div className="absolute inset-0 z-0 bg-background">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 blur-[150px] rounded-full pointer-events-none" />
@@ -48,7 +48,7 @@ export function Home() {
           className="relative z-10 w-full max-w-4xl mx-auto bg-surface rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)] border border-white/10"
         >
           {/* Banner */}
-          <div className="relative h-64 md:h-80 w-full overflow-hidden">
+          <div className="relative h-48 md:h-80 w-full overflow-hidden">
             <img
               src={config.botBanner}
               alt="Banner"
@@ -61,9 +61,9 @@ export function Home() {
           {/* Profile Content */}
           <div className="relative px-8 pb-12 pt-4 flex flex-col items-center text-center">
             {/* Avatar */}
-            <div className="relative -mt-24 md:-mt-32 mb-6 group">
+            <div className="relative -mt-20 md:-mt-32 mb-6 group">
               <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full group-hover:bg-primary/40 transition-colors duration-500" />
-              <div className="relative w-32 h-32 md:w-48 md:h-48 rounded-full border-8 border-surface shadow-[0_0_30px_rgba(255,215,0,0.3)] overflow-hidden bg-surface">
+              <div className="relative w-28 h-28 md:w-48 md:h-48 rounded-full border-8 border-surface shadow-[0_0_30px_rgba(255,215,0,0.3)] overflow-hidden bg-surface">
                 <img
                   src={config.botAvatar}
                   alt={config.botName}
@@ -88,11 +88,11 @@ export function Home() {
             </div>
 
             {/* Title & Tagline */}
-            <h1 className="font-serif text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg flex items-center justify-center gap-3 tracking-tight animate-slide-in animate-glitter">
+            <h1 className="font-serif text-3xl md:text-6xl font-bold mb-4 drop-shadow-lg flex items-center justify-center gap-3 tracking-tight animate-slide-in animate-glitter">
               {config.botName}
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-300 font-medium mb-10 max-w-2xl">
+            <p className="text-base md:text-xl text-gray-300 font-medium mb-10 max-w-2xl">
               {config.tagline}
             </p>
 

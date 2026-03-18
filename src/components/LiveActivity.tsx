@@ -55,7 +55,7 @@ export function LiveActivity() {
   };
 
   return (
-    <div className="fixed bottom-6 left-6 z-50 pointer-events-none">
+    <div className="fixed bottom-4 left-4 md:bottom-6 md:left-6 z-50 pointer-events-none">
       <AnimatePresence mode="wait">
         {isVisible && (
           <motion.div
@@ -64,25 +64,25 @@ export function LiveActivity() {
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: -20, scale: 0.95 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="flex items-center gap-4 bg-background/90 backdrop-blur-xl border border-white/10 p-4 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] max-w-sm pointer-events-auto relative overflow-hidden group"
+            className="flex items-center gap-3 md:gap-4 bg-background/90 backdrop-blur-xl border border-white/10 p-3 md:p-4 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] max-w-[calc(100vw-2rem)] md:max-w-sm pointer-events-auto relative overflow-hidden group"
           >
             {/* Premium Gradient Border Glow */}
             <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             
-            <div className="relative flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center border border-white/10 shadow-inner">
+            <div className="relative flex-shrink-0 w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center border border-white/10 shadow-inner">
               {getIcon(current.type)}
             </div>
             <div className="relative flex flex-col gap-0.5">
               <div className="flex items-center gap-2">
-                <span className="text-[9px] font-black uppercase tracking-[0.2em] text-primary">
+                <span className="text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em] text-primary">
                   Live Feed
                 </span>
                 <div className="flex items-center gap-1">
-                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
-                  <span className="text-[8px] font-bold text-emerald-500/80 uppercase tracking-tighter">Live</span>
+                  <div className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
+                  <span className="text-[7px] md:text-[8px] font-bold text-emerald-500/80 uppercase tracking-tighter">Live</span>
                 </div>
               </div>
-              <p className="text-[13px] font-medium text-white/90 leading-tight">
+              <p className="text-[12px] md:text-[13px] font-medium text-white/90 leading-tight">
                 <span className="font-bold text-white">{current.user}</span>{" "}
                 <span className="text-white/70">{current.message.replace(current.user, "").trim()}</span>
               </p>
