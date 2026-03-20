@@ -57,12 +57,17 @@ function UserAvatar({ name, src }: { name: string; src?: string }) {
 }
 
 const INITIAL_REVIEWS = [
-  { id: "r1", userName: "oppay_mu889", rating: 5, comment: "Dari FB Gua", createdAt: new Date(Date.now() - 9 * 1000) },
-  { id: "r2", userName: "Jull_33", rating: 5, comment: "Gelo bagus jir", createdAt: new Date(Date.now() - 5 * 60 * 1000) },
-  { id: "r3", userName: "𝕲𝖎𝖑𝖑𝖜𝖆𝖞𝖞", rating: 5, comment: "srius lu buat ini liaa?niat banget jirr", createdAt: new Date(Date.now() - 20 * 60 * 1000) },
-  { id: "r4", userName: "RYUzeen", rating: 5, comment: "woii minta coin min", createdAt: new Date(Date.now() - 3 * 60 * 60 * 1000) },
-  { id: "r5", userName: "Budi Santoso", rating: 5, comment: "Anjirr gw kira bakal ribet ternyata gampang juga co", createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000) },
-  { id: "r6", userName: "Sarah", rating: 5, comment: "Aku baru coba bentar tapi lucu juga gamenya 😻", createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) },
+  { id: "r1", userName: "RYUzeen", rating: 5, comment: "Hey admin, give me some coins please", createdAt: new Date(Date.now() - 3 * 60 * 60 * 1000) },
+  { id: "r2", userName: "oppay_mu88g", rating: 5, comment: "I'm from FB", createdAt: new Date(Date.now() - 9 * 1000) },
+  { id: "r3", userName: "tyaraswis", rating: 5, comment: "Already joined, sis", createdAt: new Date(Date.now() - 5 * 60 * 1000) },
+  { id: "r4", userName: "Jull_33", rating: 5, comment: "This bot is insanely good!", createdAt: new Date(Date.now() - 10 * 60 * 1000) },
+  { id: "r5", userName: "𝕲𝖎𝖑𝖑𝖜𝖆𝖞𝖞", rating: 5, comment: "Seriously Liaa, did you make this yourself? Damn, crazy", createdAt: new Date(Date.now() - 20 * 60 * 1000) },
+  { id: "r6", userName: "Budi Santoso", rating: 5, comment: "Thought it would be complicated, but it's actually super easy to use.", createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000) },
+  { id: "r7", userName: "Sarah", rating: 5, comment: "Just started playing, the game is so cute! 😻", createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) },
+  { id: "r8", userName: "jjeee_389", rating: 5, comment: "Holy moly", createdAt: new Date(Date.now() - 1 * 60 * 60 * 1000) },
+  { id: "r9", userName: "𝖏𝖊𝖗𝖊𝖒𝖎𝖊", rating: 5, comment: "I'm addicted to playing this 😂", createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000) },
+  { id: "r10", userName: "gwtyan", rating: 4, comment: "Just joined, seems cool.", createdAt: new Date(Date.now() - 3 * 60 * 60 * 1000) },
+  { id: "r11", userName: "ilyjeee", rating: 5, comment: "Finally invited Yumeko to my server!", createdAt: new Date(Date.now() - 4 * 60 * 60 * 1000) },
 ];
 
 function getRelativeTime(date: Date) {
@@ -116,7 +121,7 @@ export function ReviewSection() {
       setReviews(fetchedReviews);
     }, (err) => {
       console.error("Firestore error:", err);
-      setError("Gagal memuat review. Pastikan Firebase sudah dikonfigurasi.");
+      setError("Failed to load reviews. Make sure Firebase is configured.");
     });
 
     return () => {
@@ -131,9 +136,9 @@ export function ReviewSection() {
     } catch (err: any) {
       console.error("Login error:", err);
       if (err.code === "auth/operation-not-allowed") {
-        setError("Google login belum diaktifkan di Firebase Console. Silakan aktifkan di tab Authentication -> Sign-in method.");
+        setError("Google login is not enabled in Firebase Console. Please enable it in the Authentication -> Sign-in method tab.");
       } else {
-        setError("Gagal login dengan Google.");
+        setError("Failed to login with Google.");
       }
     }
   };
@@ -160,7 +165,7 @@ export function ReviewSection() {
       setNewRating(5);
     } catch (err: any) {
       console.error("Submit error:", err);
-      setError("Gagal mengirim review. Cek izin database (Firestore Rules).");
+      setError("Failed to send review. Check database permissions (Firestore Rules).");
     } finally {
       setIsSubmitting(false);
     }
@@ -174,7 +179,17 @@ export function ReviewSection() {
     }
   };
 
-  const displayReviews = [...INITIAL_REVIEWS as Review[], ...reviews];
+  const [displayReviews, setDisplayReviews] = useState<Review[]>([]);
+
+  useEffect(() => {
+    const allReviews = [...INITIAL_REVIEWS as Review[], ...reviews];
+    // Fisher-Yates shuffle
+    for (let i = allReviews.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [allReviews[i], allReviews[j]] = [allReviews[j], allReviews[i]];
+    }
+    setDisplayReviews(allReviews);
+  }, [reviews]);
 
   return (
     <section className="w-full max-w-7xl mx-auto px-6 py-32 relative z-10">
@@ -183,7 +198,7 @@ export function ReviewSection() {
           User <span className="text-primary">Reviews</span>
         </h2>
         <p className="text-gray-400 max-w-2xl mx-auto">
-          Apa kata mereka tentang Yumeko Bot? Bagikan pengalamanmu juga!
+          What do they say about Yumeko Bot? Share your experience too!
         </p>
         <div className="w-24 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mt-6" />
       </div>
@@ -194,7 +209,7 @@ export function ReviewSection() {
           <div className="bg-surface/50 backdrop-blur-md border border-white/10 rounded-3xl p-8 sticky top-32">
             <h3 className="font-serif text-2xl font-bold text-white mb-6 flex items-center gap-3">
               <MessageSquare className="w-6 h-6 text-primary" />
-              Beri Rating
+              Rate Us
             </h3>
 
             {error && (
@@ -205,7 +220,7 @@ export function ReviewSection() {
 
             {!user ? (
               <div className="text-center py-8">
-                <p className="text-gray-400 mb-6">Kamu harus login dengan Google untuk memberikan rating.</p>
+                <p className="text-gray-400 mb-6">You must login with Google to give a rating.</p>
                 <Button onClick={handleLogin} className="w-full bg-white text-black hover:bg-gray-200 border-none">
                   <LogIn className="w-5 h-5" />
                   Login with Google
@@ -238,21 +253,21 @@ export function ReviewSection() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-400 mb-3">Komentar</label>
+                  <label className="block text-sm font-medium text-gray-400 mb-3">Comment</label>
                   <textarea
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
-                    placeholder="Tulis pengalamanmu..."
+                    placeholder="Write your experience..."
                     className="w-full bg-background border border-white/10 rounded-2xl p-4 text-white focus:outline-none focus:border-primary transition-colors min-h-[120px] resize-none"
                     required
                   />
                 </div>
 
                 <Button type="submit" disabled={isSubmitting} className="w-full">
-                  {isSubmitting ? "Mengirim..." : (
+                  {isSubmitting ? "Sending..." : (
                     <>
                       <Send className="w-5 h-5" />
-                      Kirim Review
+                      Send Review
                     </>
                   )}
                 </Button>
@@ -270,23 +285,25 @@ export function ReviewSection() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
                 className="bg-surface/30 backdrop-blur-sm border border-white/5 rounded-2xl p-6 relative group"
               >
                 <div className="flex items-start gap-4">
-                  <UserAvatar name={review.userName} src={review.userAvatar} />
+                  <div className="flex-shrink-0">
+                    <UserAvatar name={review.userName} src={review.userAvatar} />
+                  </div>
                   <div className="flex-1">
                     <div className="flex items-center justify-between mb-2">
-                      <h4 className="text-white font-bold">{review.userName}</h4>
+                      <h4 className="text-white font-bold text-lg">{review.userName}</h4>
                       <div className="flex gap-1">
                         {[...Array(5)].map((_, i) => (
                           <Star key={i} className={`w-4 h-4 ${i < review.rating ? "text-primary fill-current" : "text-gray-700"}`} />
                         ))}
                       </div>
                     </div>
-                    <p className="text-gray-400 leading-relaxed italic">"{review.comment}"</p>
-                    <div className="mt-4 flex items-center justify-between">
-                      <span className="text-xs text-gray-600">
+                    <p className="text-gray-300 italic mb-4">"{review.comment}"</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-gray-500">
                         {review.createdAt?.toDate ? getRelativeTime(review.createdAt.toDate()) : getRelativeTime(new Date(review.createdAt))}
                       </span>
                       {user && user.uid === review.userId && (

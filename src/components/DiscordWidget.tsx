@@ -21,10 +21,12 @@ export function DiscordWidget() {
       try {
         // Fetch basic widget data (for avatars and online count)
         const widgetRes = await fetch('https://discord.com/api/guilds/1480374470924439717/widget.json');
+        if (!widgetRes.ok) throw new Error('Failed to fetch widget');
         const widgetData = await widgetRes.json();
         
         // Fetch invite data (for total member count)
         const inviteRes = await fetch('https://discord.com/api/v9/invites/huRuHCbf?with_counts=true');
+        if (!inviteRes.ok) throw new Error('Failed to fetch invite');
         const inviteData = await inviteRes.json();
         
         setData({
@@ -32,7 +34,8 @@ export function DiscordWidget() {
           member_count: inviteData.approximate_member_count || 0
         });
       } catch (error) {
-        console.error('Error fetching Discord data:', error);
+        // Silently fail or log minimally, as this is often due to rate limits or network issues
+        console.warn('Discord widget data currently unavailable.');
       } finally {
         setLoading(false);
       }

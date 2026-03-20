@@ -59,6 +59,21 @@ const commandCategories = [
       { name: ".stat", description: "Show bot statistics" },
     ],
   },
+  {
+    name: "✨ Yumeko Update",
+    commands: [
+      { name: ".free", description: "Claim 50,000 coins (Available for old members who missed out & all new players!)" },
+      { name: ".profile", description: "View your aesthetic profile UI with custom background" },
+      { name: ".setbg <image_url>", description: "Set your custom profile background image" },
+      { name: ".fish", description: "Go fishing to catch various types of fish" },
+      { name: ".sellfish <fish_name>", description: "Sell your caught fish for coins based on rarity" },
+      { name: ".pond", description: "View your collection of caught fish with images" },
+      { name: ".mark", description: "Scratch lucky cards for a chance to win rewards" },
+      { name: ".pet", description: "Display all your owned pets in a beautiful UI" },
+      { name: ".battle @user", description: "Engage in a 2 vs 2 pet battle against another user" },
+      { name: ".eq <pet>", description: "Equip your pet (You must equip 2 pets for battle)" },
+    ],
+  },
 ];
 
 export function CommandShowcase() {
