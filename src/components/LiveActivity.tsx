@@ -62,24 +62,24 @@ export function LiveActivity() {
             animate={{ opacity: 1, x: 0, scale: 1 }}
             exit={{ opacity: 0, x: -20, scale: 0.95 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="flex items-center gap-1.5 md:gap-2 bg-background/90 backdrop-blur-xl border border-white/10 p-1.5 md:p-2 rounded-lg shadow-[0_5px_15px_rgba(0,0,0,0.5)] max-w-[calc(100vw-0.5rem)] md:max-w-[240px] pointer-events-auto relative overflow-hidden group"
+            className="flex items-center gap-1.5 md:gap-2 bg-background/90 backdrop-blur-xl border border-white/10 p-1 md:p-1.5 rounded-lg shadow-[0_5px_15px_rgba(0,0,0,0.5)] max-w-[calc(100vw-1rem)] md:max-w-[200px] pointer-events-auto relative overflow-hidden group"
           >
             {/* Premium Gradient Border Glow */}
             <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             
-            <div className="relative flex-shrink-0 w-6 h-6 md:w-8 md:h-8 rounded-md bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center border border-white/10 shadow-inner">
+            <div className="relative flex-shrink-0 w-5 h-5 md:w-6 md:h-6 rounded-md bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center border border-white/10 shadow-inner">
               {getIcon(current.type)}
             </div>
             <div className="relative flex flex-col gap-0">
               <div className="flex items-center gap-1">
-                <span className="text-[6px] md:text-[7px] font-black uppercase tracking-[0.1em] text-primary">
+                <span className="text-[5px] md:text-[6px] font-black uppercase tracking-[0.1em] text-primary">
                   Live
                 </span>
                 <div className="flex items-center gap-0.5">
                   <div className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_3px_rgba(16,185,129,0.6)]" />
                 </div>
               </div>
-              <p className="text-[8px] md:text-[9px] font-medium text-white/90 leading-tight truncate max-w-[140px] md:max-w-[160px]">
+              <p className="text-[7px] md:text-[8px] font-medium text-white/90 leading-tight truncate max-w-[120px] md:max-w-[140px]">
                 <span className="font-bold text-white">{current.user}</span>{" "}
                 <span className="text-white/70">{current.message.replace(current.user, "").trim()}</span>
               </p>

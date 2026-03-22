@@ -3,9 +3,11 @@ import { ChevronDown, Sparkles, Zap, Globe, Gift, Terminal, CheckCircle2, Check 
 import { config } from "@/src/config";
 import { Button } from "@/src/components/ui/Button";
 import { CommandShowcase } from "@/src/components/CommandShowcase";
+import { FeatureShowcase } from "@/src/components/FeatureShowcase";
 import { ReviewSection } from "@/src/components/ReviewSection";
 import { BuyCoinSection } from "@/src/components/BuyCoinSection";
 import { VisitorCounter } from "@/src/components/VisitorCounter";
+import { CoinRain } from "@/src/components/CoinRain";
 
 const features = [
   {
@@ -33,11 +35,12 @@ const features = [
 export function Home() {
   return (
     <div className="flex flex-col items-center w-full">
+      <CoinRain />
       {/* Hero Section */}
-      <section className="relative w-full min-h-[80vh] md:min-h-[90vh] flex flex-col items-center justify-center overflow-hidden pt-16 pb-8 md:pt-20 md:pb-10">
+      <section className="relative w-full flex flex-col items-center justify-start overflow-hidden pt-4 pb-16 md:pt-8 md:pb-20">
         {/* Background Ambient Glow */}
         <div className="absolute inset-0 z-0 bg-background">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 blur-[150px] rounded-full pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent/10 blur-[150px] rounded-full pointer-events-none" />
         </div>
 
         {/* Discord Profile Card */}
@@ -62,7 +65,7 @@ export function Home() {
           <div className="relative px-8 pb-12 pt-4 flex flex-col items-center text-center">
             {/* Avatar */}
             <div className="relative -mt-20 md:-mt-32 mb-6 group">
-              <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full group-hover:bg-primary/40 transition-colors duration-500" />
+              <div className="absolute inset-0 bg-accent/20 blur-2xl rounded-full group-hover:bg-accent/40 transition-colors duration-500" />
               <div className="relative w-28 h-28 md:w-48 md:h-48 rounded-full border-8 border-surface shadow-[0_0_30px_rgba(255,215,0,0.3)] overflow-hidden bg-surface">
                 <img
                   src={config.botAvatar}
@@ -128,8 +131,8 @@ export function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="w-full max-w-7xl mx-auto px-6 py-32 relative z-10">
-        <div className="text-center mb-20">
+      <section className="w-full max-w-7xl mx-auto px-6 pt-8 pb-16 relative z-10">
+        <div className="text-center mb-12">
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mb-6">
             Premium <span className="text-primary">Features</span>
           </h2>
@@ -147,7 +150,7 @@ export function Home() {
               whileHover={{ y: -10, borderColor: "rgba(255,215,0,0.3)" }}
               className="bg-surface/50 backdrop-blur-sm border border-white/5 rounded-2xl p-8 transition-all duration-300 group relative overflow-hidden hover:shadow-[0_0_30px_rgba(255,215,0,0.1)]"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="relative z-10">
                 <div className="w-14 h-14 rounded-xl bg-background border border-primary/20 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(255,215,0,0.3)] transition-all duration-300">
                   {feature.icon}
@@ -164,17 +167,19 @@ export function Home() {
         </div>
       </section>
 
-      {/* Review Section */}
-      <ReviewSection />
+      {/* Feature Showcase (GIFs) */}
+      <section className="w-full py-16 relative z-10 bg-surface/5 border-t border-white/5">
+        <FeatureShowcase />
+      </section>
 
       {/* Commands Section */}
-      <section className="w-full px-6 py-32 relative z-10 bg-surface/10 border-t border-white/5">
+      <section className="w-full px-6 py-16 relative z-10 bg-surface/10 border-t border-white/5">
         <CommandShowcase />
       </section>
 
       {/* Stats Section */}
-      <section className="w-full bg-surface/30 border-y border-white/5 py-24 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-full bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
+      <section className="w-full bg-surface/30 border-y border-white/5 py-12 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-full bg-accent/5 blur-[120px] rounded-full pointer-events-none" />
         
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-center relative z-10">
           {[
@@ -201,6 +206,11 @@ export function Home() {
           ))}
         </div>
       </section>
+
+      {/* Review Section */}
+      <div className="w-full bg-background border-t border-white/5">
+        <ReviewSection />
+      </div>
     </div>
   );
 }
