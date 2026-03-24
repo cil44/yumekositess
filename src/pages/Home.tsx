@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 import { ChevronDown, Sparkles, Zap, Globe, Gift, Terminal, CheckCircle2, Check } from "lucide-react";
 import { config } from "@/src/config";
 import { Button } from "@/src/components/ui/Button";
@@ -99,18 +100,25 @@ export function Home() {
             </p>
 
             {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center">
-              <a href={config.inviteURL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                <Button size="lg" className="w-full sm:w-auto text-base md:text-lg">
-                  <Sparkles className="w-5 h-5" />
-                  Invite me to server
-                </Button>
-              </a>
-              <a href={config.supportServer} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-                <Button variant="outline" size="lg" className="w-full sm:w-auto text-base md:text-lg">
-                  Support Server
-                </Button>
-              </a>
+            <div className="flex flex-col gap-4 w-full sm:w-auto items-center">
+              <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
+                <a href={config.inviteURL} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full sm:w-auto text-base md:text-lg">
+                    <Sparkles className="w-5 h-5" />
+                    Invite me to server
+                  </Button>
+                </a>
+                <a href={config.supportServer} target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full sm:w-auto text-base md:text-lg">
+                    Support Server
+                  </Button>
+                </a>
+                <Link to="/social" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full sm:w-auto text-base md:text-lg bg-red-700 hover:bg-red-800 text-yellow-400 font-bold border-2 border-red-900 shadow-[0_0_20px_rgba(220,38,38,0.4)] transition-all">
+                    💬 Yumeko Social
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </motion.div>

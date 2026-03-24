@@ -28,6 +28,66 @@ service cloud.firestore {
       allow delete: if isAuthenticated() && isOwner(resource.data.userId);
     }
 
+    function isAdmin() {
+      return isAuthenticated() && (request.auth.token.email == "AyumeeDEV###DEV" || request.auth.token.email == "ayumeedev@yumeko.com");
+    }
+
+    match /yumeko_users/{userId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && request.auth.uid == userId;
+      allow update: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+      allow delete: if isAdmin();
+      
+      match /notifications/{notificationId} {
+        allow read: if isAuthenticated() && request.auth.uid == userId;
+        allow create: if isAuthenticated(); // Anyone can send a notification
+        allow update: if isAuthenticated() && request.auth.uid == userId;
+        allow delete: if isAuthenticated() && request.auth.uid == userId;
+      }
+    }
+
+    match /yumeko_posts/{postId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && request.resource.data.authorId == request.auth.uid;
+      allow update: if isAuthenticated(); // Allow likes/shares updates
+      allow delete: if isAuthenticated() && (resource.data.authorId == request.auth.uid || isAdmin());
+      
+      match /comments/{commentId} {
+        allow read: if isAuthenticated();
+        allow create: if isAuthenticated() && request.resource.data.authorId == request.auth.uid;
+        allow update: if isAuthenticated() && request.resource.data.authorId == request.auth.uid;
+        allow delete: if isAuthenticated() && (resource.data.authorId == request.auth.uid || isAdmin());
+      }
+    }
+
+    match /yumeko_guilds/{guildId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && request.resource.data.creatorId == request.auth.uid;
+      allow update: if isAuthenticated(); // Allow joining/leaving
+      allow delete: if isAuthenticated() && (resource.data.creatorId == request.auth.uid || isAdmin());
+      
+      match /messages/{messageId} {
+        allow read: if isAuthenticated();
+        allow create: if isAuthenticated() && request.resource.data.senderId == request.auth.uid;
+        allow update: if isAuthenticated() && request.resource.data.senderId == request.auth.uid;
+        allow delete: if isAuthenticated() && (resource.data.senderId == request.auth.uid || isAdmin());
+      }
+    }
+
+    match /yumeko_chats/{chatId} {
+      allow read: if isAuthenticated() && chatId.matches('.*' + request.auth.uid + '.*');
+      allow create: if isAuthenticated() && chatId.matches('.*' + request.auth.uid + '.*');
+      allow update: if isAuthenticated() && chatId.matches('.*' + request.auth.uid + '.*');
+      allow delete: if isAuthenticated() && chatId.matches('.*' + request.auth.uid + '.*');
+      
+      match /messages/{messageId} {
+        allow read: if isAuthenticated() && chatId.matches('.*' + request.auth.uid + '.*');
+        allow create: if isAuthenticated() && chatId.matches('.*' + request.auth.uid + '.*') && request.resource.data.senderId == request.auth.uid;
+        allow update: if isAuthenticated() && request.resource.data.senderId == request.auth.uid;
+        allow delete: if isAuthenticated() && (resource.data.senderId == request.auth.uid || isAdmin());
+      }
+    }
+
     match /stats/{statId} {
       allow read: if true;
       allow create, update: if true; // In a real app, you'd restrict this more, but for a simple visitor counter it's okay for now

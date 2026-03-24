@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { doc, getDoc, setDoc, updateDoc, increment, onSnapshot } from 'firebase/firestore';
 import { db } from '@/src/lib/firebase';
+import { handleFirestoreError, OperationType } from '@/src/lib/firestore-error-handler';
 import { Users } from 'lucide-react';
 
 export function VisitorCounter() {
@@ -30,7 +31,7 @@ export function VisitorCounter() {
           }
           sessionStorage.setItem('hasVisited', 'true');
         } catch (error) {
-          console.error("Error updating visitor count:", error);
+          handleFirestoreError(error, OperationType.WRITE, 'stats/global');
         }
       };
       updateVisitorCount();
@@ -44,9 +45,11 @@ export function VisitorCounter() {
         
         // Force update if database value is still low (e.g. from previous version)
         if (val < 7800) {
-          updateDoc(statsDoc, { visitorCount: 7800 });
+          updateDoc(statsDoc, { visitorCount: 7800 }).catch(err => handleFirestoreError(err, OperationType.UPDATE, 'stats/global'));
         }
       }
+    }, (error) => {
+      handleFirestoreError(error, OperationType.GET, 'stats/global');
     });
 
     return () => unsubscribe();

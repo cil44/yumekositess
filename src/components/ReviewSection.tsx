@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Star, MessageSquare, LogIn, Send, User, Trash2, ChevronDown } from "lucide-react";
 import { auth, db, googleProvider } from "@/src/lib/firebase";
+import { handleFirestoreError, OperationType } from "@/src/lib/firestore-error-handler";
 import { 
   signInWithPopup, 
   onAuthStateChanged, 
@@ -121,8 +122,7 @@ export function ReviewSection() {
       })) as Review[];
       setReviews(fetchedReviews);
     }, (err) => {
-      console.error("Firestore error:", err);
-      setError("Failed to load reviews. Make sure Firebase is configured.");
+      handleFirestoreError(err, OperationType.GET, "reviews");
     });
 
     return () => {
@@ -165,8 +165,7 @@ export function ReviewSection() {
       setNewComment("");
       setNewRating(5);
     } catch (err: any) {
-      console.error("Submit error:", err);
-      setError("Failed to send review. Check database permissions (Firestore Rules).");
+      handleFirestoreError(err, OperationType.CREATE, "reviews");
     } finally {
       setIsSubmitting(false);
     }
@@ -176,7 +175,7 @@ export function ReviewSection() {
     try {
       await deleteDoc(doc(db, "reviews", id));
     } catch (err) {
-      console.error("Delete error:", err);
+      handleFirestoreError(err, OperationType.DELETE, `reviews/${id}`);
     }
   };
 

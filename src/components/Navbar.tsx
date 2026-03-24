@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, Sparkles, MoreVertical, BookHeart, Map } from "lucide-react";
+import { Menu, X, Sparkles, MoreVertical, Users, Map } from "lucide-react";
 import { config } from "@/src/config";
 import { cn } from "@/src/lib/utils";
 
@@ -33,6 +33,7 @@ export function Navbar() {
 
   const navLinks = [
     { name: "Home", path: "/" },
+    { name: "Yumeko Social", path: "/social" },
     { name: "Commands", path: "/commands" },
     { name: "Privacy", path: "/privacy" },
     { name: "TOS", path: "/tos" },
@@ -94,46 +95,6 @@ export function Navbar() {
           >
             Invite Bot
           </a>
-
-          {/* More Menu (3 dots) */}
-          <div className="relative" ref={moreMenuRef}>
-            <button
-              onClick={() => setIsMoreOpen(!isMoreOpen)}
-              className="p-2 text-gray-400 hover:text-white transition-colors rounded-full hover:bg-white/5"
-              title="More"
-            >
-              <MoreVertical className="w-5 h-5" />
-            </button>
-
-            <AnimatePresence>
-              {isMoreOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute right-0 mt-2 w-48 bg-surface/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl py-2 z-50 overflow-hidden"
-                >
-                  <Link
-                    to="/diary"
-                    className="flex items-center gap-3 px-4 py-3 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
-                    onClick={() => setIsMoreOpen(false)}
-                  >
-                    <BookHeart className="w-4 h-4 text-pink-400" />
-                    Dev Diary
-                  </Link>
-                  <Link
-                    to="/journey"
-                    className="flex items-center gap-3 px-4 py-3 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors"
-                    onClick={() => setIsMoreOpen(false)}
-                  >
-                    <Map className="w-4 h-4 text-emerald-400" />
-                    Yumeko's Journey
-                  </Link>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -176,26 +137,6 @@ export function Navbar() {
               >
                 Invite Bot
               </a>
-
-              {/* Mobile Extra Links */}
-              <div className="mt-4 pt-4 border-t border-white/10 flex flex-col gap-4">
-                <Link
-                  to="/diary"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center gap-3 text-lg font-medium text-gray-400 hover:text-white transition-colors"
-                >
-                  <BookHeart className="w-5 h-5 text-pink-400" />
-                  Dev Diary
-                </Link>
-                <Link
-                  to="/journey"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center gap-3 text-lg font-medium text-gray-400 hover:text-white transition-colors"
-                >
-                  <Map className="w-5 h-5 text-emerald-400" />
-                  Yumeko's Journey
-                </Link>
-              </div>
             </div>
           </motion.div>
         )}
