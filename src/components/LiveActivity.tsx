@@ -17,7 +17,7 @@ const activities: Activity[] = [
   { id: 5, user: "Sultan_Bekasi", message: "Just hit a 100,000 coins Jackpot!! 🔥", type: "win" },
   { id: 6, user: "Ratu_Hoki", message: "Won 15,000 coins in Blackjack!! 🃏", type: "win" },
   { id: 7, user: "Haiyumee (Dev)", message: "Giving away 5,000 bonus coins to all active members! 🎊", type: "gift" },
-  { id: 8, user: "Budi_Santoso", message: "Exchanged 50,000 coins for E-Wallet balance! Awesome!! ✅", type: "shop" },
+  { id: 8, user: "Budi_Santoso", message: "Just bought a Legendary Pet from the shop!! 🐉", type: "shop" },
   { id: 9, user: "Player_Pro", message: "Won 30,000 coins in Roulette!! 🎡", type: "win" },
   { id: 10, user: "Haiyumee (Dev)", message: "Gave 2,500 coins to 'Anonym'! Congratulations!! 💸", type: "gift" },
   { id: 11, user: "wenxtyy", message: "Just hit a Slot Jackpot of 8,777,935! Insane luck!! 🎰", type: "win" },

@@ -5,7 +5,6 @@ import { Button } from "@/src/components/ui/Button";
 import { CommandShowcase } from "@/src/components/CommandShowcase";
 import { FeatureShowcase } from "@/src/components/FeatureShowcase";
 import { ReviewSection } from "@/src/components/ReviewSection";
-import { BuyCoinSection } from "@/src/components/BuyCoinSection";
 import { VisitorCounter } from "@/src/components/VisitorCounter";
 import { CoinRain } from "@/src/components/CoinRain";
 
@@ -112,9 +111,6 @@ export function Home() {
                   Support Server
                 </Button>
               </a>
-              <div className="w-full sm:w-auto">
-                <BuyCoinSection />
-              </div>
             </div>
           </div>
         </motion.div>
