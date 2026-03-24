@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Send, Heart, Share2, MoreHorizontal, Trash2, Thermometer, Compass, MessageCircle } from "lucide-react";
 import { db } from "@/src/lib/firebase";
-import { collection, query, orderBy, onSnapshot, addDoc, deleteDoc, doc, serverTimestamp, updateDoc, increment } from "firebase/firestore";
+import { collection, query, orderBy, onSnapshot, addDoc, deleteDoc, doc, serverTimestamp, updateDoc, increment, setDoc, getDocs } from "firebase/firestore";
 import { handleFirestoreError, OperationType } from "@/src/lib/firestore-error-handler";
 import { YumekoUser } from "../index";
 import { Badge, calculateAutoBadges, checkBadgeUpgrade } from "./Badges";
@@ -42,6 +42,167 @@ export function SocialHome({ currentUser }: { currentUser: YumekoUser }) {
   const [activeCommentPost, setActiveCommentPost] = useState<string | null>(null);
   const [comments, setComments] = useState<Record<string, PostComment[]>>({});
   const [newCommentText, setNewCommentText] = useState("");
+  const [isSeeding, setIsSeeding] = useState(false);
+
+  const seedCommunity = async () => {
+    setIsSeeding(true);
+    try {
+      const fakeUsers: YumekoUser[] = [
+        {
+          uid: "fake_user_1",
+          username: "Rizky Pratama",
+          bio: "Pecinta Yumeko garis keras! Bot terbaik yang pernah ada! ❤️",
+          photoURL: "https://picsum.photos/seed/user1/200",
+          coverURL: "https://picsum.photos/seed/cover1/800/200",
+          role: 'user',
+          stats: { likes: 1250, shares: 450, followers: 890 },
+          badges: ['Fans No.1', 'POPULAR'],
+          activity: { posts: 45, comments: 120, shares: 30 }
+        },
+        {
+          uid: "fake_user_2",
+          username: "Andi Wijaya",
+          bio: "Casino adalah hidupku. Yumeko adalah ratuku. 🎰",
+          photoURL: "https://picsum.photos/seed/user2/200",
+          coverURL: "https://picsum.photos/seed/cover2/800/200",
+          role: 'user',
+          stats: { likes: 3400, shares: 1200, followers: 2500 },
+          badges: ['Fans No.2', 'Fans Fanatic'],
+          activity: { posts: 88, comments: 340, shares: 150 }
+        },
+        {
+          uid: "fake_user_3",
+          username: "Siti Aminah",
+          bio: "Koleksi badge itu hobi! 🏆",
+          photoURL: "https://picsum.photos/seed/user3/200",
+          coverURL: "https://picsum.photos/seed/cover3/800/200",
+          role: 'user',
+          stats: { likes: 890, shares: 120, followers: 450 },
+          badges: ['Fans No.5'],
+          activity: { posts: 12, comments: 80, shares: 10 }
+        },
+        {
+          uid: "fake_user_4",
+          username: "Budi Santoso",
+          bio: "Coding dan Yumeko. Kombinasi maut. 💻",
+          photoURL: "https://picsum.photos/seed/user4/200",
+          coverURL: "https://picsum.photos/seed/cover4/800/200",
+          role: 'user',
+          stats: { likes: 450, shares: 80, followers: 230 },
+          badges: ['DEV'],
+          activity: { posts: 5, comments: 45, shares: 5 }
+        },
+        {
+          uid: "fake_user_5",
+          username: "Dewi Lestari",
+          bio: "Yumeko lucu banget sih. 😍",
+          photoURL: "https://picsum.photos/seed/user5/200",
+          coverURL: "https://picsum.photos/seed/cover5/800/200",
+          role: 'user',
+          stats: { likes: 2100, shares: 890, followers: 1500 },
+          badges: ['Fans No.3', 'POPULAR'],
+          activity: { posts: 67, comments: 230, shares: 90 }
+        }
+      ];
+
+      const fakePosts = [
+        {
+          authorId: "fake_user_1",
+          authorName: "Rizky Pratama",
+          authorPhoto: "https://picsum.photos/seed/user1/200",
+          authorBadges: ['Fans No.1', 'POPULAR'],
+          text: "Sumpah, Yumeko bot terbaik! Fitur ekonominya seru banget. ❤️",
+          mood: 100,
+          createdAt: serverTimestamp(),
+          stats: { likes: 45, shares: 12, comments: 5 }
+        },
+        {
+          authorId: "fake_user_2",
+          authorName: "Andi Wijaya",
+          authorPhoto: "https://picsum.photos/seed/user2/200",
+          authorBadges: ['Fans No.2', 'Fans Fanatic'],
+          text: "Bisa tambahin game Poker gak? Pasti makin rame! 🎰",
+          mood: 80,
+          createdAt: serverTimestamp(),
+          stats: { likes: 120, shares: 45, comments: 23 }
+        },
+        {
+          authorId: "fake_user_3",
+          authorName: "Siti Aminah",
+          authorPhoto: "https://picsum.photos/seed/user3/200",
+          authorBadges: ['Fans No.5'],
+          text: "Gimana caranya dapet badge 'Fans No.1'? Pengen banget! 🏆",
+          mood: 70,
+          createdAt: serverTimestamp(),
+          stats: { likes: 34, shares: 5, comments: 12 }
+        },
+        {
+          authorId: "fake_user_4",
+          authorName: "Budi Santoso",
+          authorPhoto: "https://picsum.photos/seed/user4/200",
+          authorBadges: ['DEV'],
+          text: "Ada API buat Yumeko gak ya? Mau coba bikin dashboard sendiri. 💻",
+          mood: 60,
+          createdAt: serverTimestamp(),
+          stats: { likes: 12, shares: 2, comments: 8 }
+        },
+        {
+          authorId: "fake_user_5",
+          authorName: "Dewi Lestari",
+          authorPhoto: "https://picsum.photos/seed/user5/200",
+          authorBadges: ['Fans No.3', 'POPULAR'],
+          text: "Avatarnya gemoy banget. Tambahin emote dong! 😍",
+          mood: 90,
+          createdAt: serverTimestamp(),
+          stats: { likes: 89, shares: 34, comments: 15 }
+        },
+        {
+          authorId: "fake_user_1",
+          authorName: "Rizky Pratama",
+          authorPhoto: "https://picsum.photos/seed/user1/200",
+          authorBadges: ['Fans No.1', 'POPULAR'],
+          text: "Baru aja menang 1M di blackjack! Yumeko emang hoki! 🃏",
+          mood: 100,
+          createdAt: serverTimestamp(),
+          stats: { likes: 67, shares: 23, comments: 8 }
+        },
+        {
+          authorId: "fake_user_3",
+          authorName: "Siti Aminah",
+          authorPhoto: "https://picsum.photos/seed/user3/200",
+          authorBadges: ['Fans No.5'],
+          text: "Akhirnya dapet badge pertama! Seneng banget! ✨",
+          mood: 95,
+          createdAt: serverTimestamp(),
+          stats: { likes: 45, shares: 10, comments: 4 }
+        },
+        {
+          authorId: "fake_user_2",
+          authorName: "Andi Wijaya",
+          authorPhoto: "https://picsum.photos/seed/user2/200",
+          authorBadges: ['Fans No.2', 'Fans Fanatic'],
+          text: "Request: Tambahin role 'High Roller' buat yang punya saldo > 1B! 💰",
+          mood: 85,
+          createdAt: serverTimestamp(),
+          stats: { likes: 230, shares: 89, comments: 45 }
+        }
+      ];
+
+      // Add users
+      for (const user of fakeUsers) {
+        await setDoc(doc(db, "yumeko_users", user.uid), user);
+      }
+
+      // Add posts
+      for (const post of fakePosts) {
+        await addDoc(collection(db, "yumeko_posts"), post);
+      }
+    } catch (err) {
+      handleFirestoreError(err, OperationType.WRITE, "yumeko_community_seed");
+    } finally {
+      setIsSeeding(false);
+    }
+  };
 
   useEffect(() => {
     const q = query(collection(db, "yumeko_posts"), orderBy("createdAt", "desc"));
@@ -397,7 +558,14 @@ export function SocialHome({ currentUser }: { currentUser: YumekoUser }) {
             <div className="inline-block p-4 rounded-full bg-red-950/30 mb-4">
               <Compass className="w-8 h-8 text-red-900" />
             </div>
-            <p>No posts yet. Be the first to share something!</p>
+            <p className="mb-6">No posts yet. Be the first to share something!</p>
+            <button
+              onClick={seedCommunity}
+              disabled={isSeeding}
+              className="px-6 py-3 bg-red-900/50 hover:bg-red-800/50 text-white font-bold rounded-2xl border border-red-500/30 transition-all shadow-[0_0_20px_rgba(255,0,0,0.2)] disabled:opacity-50"
+            >
+              {isSeeding ? "Populating Community..." : "✨ Seed Community (Add Fake Posts)"}
+            </button>
           </div>
         )}
       </div>
