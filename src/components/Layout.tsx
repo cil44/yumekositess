@@ -2,6 +2,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { LiveActivity } from "./LiveActivity";
+import { DevNotes } from "./DevNotes";
 import { motion, AnimatePresence } from "motion/react";
 
 export function Layout() {
@@ -23,6 +24,7 @@ export function Layout() {
         </motion.main>
       </AnimatePresence>
       <LiveActivity />
+      <DevNotes />
       <Footer />
     </div>
   );

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { config } from "@/src/config";
 import { Mail } from "lucide-react";
@@ -18,6 +19,19 @@ const DiscordIcon = ({ className }: { className?: string }) => (
 );
 
 export function Footer() {
+  const [clickCount, setClickCount] = useState(0);
+
+  const handleSecretClick = () => {
+    setClickCount(prev => {
+      const next = prev + 1;
+      if (next >= 5) {
+        window.dispatchEvent(new CustomEvent("open-dev-notes"));
+        return 0;
+      }
+      return next;
+    });
+  };
+
   return (
     <footer className="bg-surface border-t border-white/5 pt-16 pb-8 relative overflow-hidden">
       {/* Decorative glow */}
@@ -31,10 +45,14 @@ export function Footer() {
             <img
               src={config.botAvatar}
               alt={config.botName}
-              className="w-10 h-10 rounded-full border border-primary/30"
+              className="w-10 h-10 rounded-full border border-primary/30 cursor-pointer select-none"
               referrerPolicy="no-referrer"
+              onClick={handleSecretClick}
             />
-            <span className="font-serif text-2xl font-bold text-white tracking-wider">
+            <span 
+              className="font-serif text-2xl font-bold text-white tracking-wider cursor-default select-none"
+              onClick={handleSecretClick}
+            >
               {config.botName}
             </span>
           </div>

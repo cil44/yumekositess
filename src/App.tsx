@@ -9,6 +9,8 @@ import { Home } from "./pages/Home";
 import { Commands } from "./pages/Commands";
 import { Privacy } from "./pages/Privacy";
 import { TOS } from "./pages/TOS";
+import { DevDiary } from "./pages/DevDiary";
+import { Journey } from "./pages/Journey";
 
 export default function App() {
   return (
@@ -19,6 +21,8 @@ export default function App() {
           <Route path="commands" element={<Commands />} />
           <Route path="privacy" element={<Privacy />} />
           <Route path="tos" element={<TOS />} />
+          <Route path="diary" element={<DevDiary />} />
+          <Route path="journey" element={<Journey />} />
         </Route>
       </Routes>
     </BrowserRouter>
