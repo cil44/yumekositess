@@ -11,7 +11,7 @@ export function LiveActivity() {
     const script = document.createElement("script");
     script.id = scriptId;
     // Using the exact URL provided by the user
-    script.src = "https://cdn.jotfor.ms/agent/embedjs/019d21aa64387462955aaa719f03f8ba92c2/embed.js";
+    script.src = "https://cdn.jotfor.ms/agent/embedjs/019d21cff67372568f091cb45e17a4a2cc6d/embed.js";
     script.async = true;
     
     // "Script error." is often a CORS issue. 
