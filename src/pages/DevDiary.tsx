@@ -67,7 +67,6 @@ export function DevDiary() {
         <div className="mt-10 mb-6 pb-6 border-b border-white/10">
           <p className="text-sm text-gray-400 font-mono flex flex-col gap-1">
             <span>Indonesian — 24 March 2026</span>
-            <span className="text-xs opacity-60">(13 days after creating Yumeko)</span>
           </p>
         </div>
 
