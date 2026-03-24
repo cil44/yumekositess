@@ -9,7 +9,6 @@ import { Home } from "./pages/Home";
 import { Commands } from "./pages/Commands";
 import { Privacy } from "./pages/Privacy";
 import { TOS } from "./pages/TOS";
-import { YumekoSocial } from "./pages/YumekoSocial";
 
 export default function App() {
   return (
@@ -17,7 +16,6 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="social" element={<YumekoSocial />} />
           <Route path="commands" element={<Commands />} />
           <Route path="privacy" element={<Privacy />} />
           <Route path="tos" element={<TOS />} />

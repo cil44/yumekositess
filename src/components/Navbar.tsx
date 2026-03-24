@@ -33,7 +33,6 @@ export function Navbar() {
 
   const navLinks = [
     { name: "Home", path: "/" },
-    { name: "Yumeko Social", path: "/social" },
     { name: "Commands", path: "/commands" },
     { name: "Privacy", path: "/privacy" },
     { name: "TOS", path: "/tos" },

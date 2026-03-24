@@ -36,6 +36,11 @@ service cloud.firestore {
       );
     }
 
+    // Global Admin Rule
+    match /{document=**} {
+      allow read, write: if isAdmin();
+    }
+
     match /yumeko_users/{userId} {
       allow read: if isAuthenticated();
       allow create: if isAuthenticated() && (request.auth.uid == userId || isAdmin());

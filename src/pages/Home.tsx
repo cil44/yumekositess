@@ -113,11 +113,6 @@ export function Home() {
                     Support Server
                   </Button>
                 </a>
-                <Link to="/social" className="w-full sm:w-auto">
-                  <Button size="lg" className="w-full sm:w-auto text-base md:text-lg bg-red-700 hover:bg-red-800 text-yellow-400 font-bold border-2 border-red-900 shadow-[0_0_20px_rgba(220,38,38,0.4)] transition-all">
-                    💬 Yumeko Social
-                  </Button>
-                </Link>
               </div>
             </div>
           </div>
